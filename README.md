@@ -1,2 +1,3 @@
-# Resource Server
-Provider backend server for demos, apps.
+# Resources
+Resource provider for demos, apps, articles.
+
