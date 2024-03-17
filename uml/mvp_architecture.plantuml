@@ -1,0 +1,53 @@
+@startuml
+class FEditView {
+    # containerView: QListWidget
+    # setupSubviews()
+    # viewWillShow()
+    # viewDidShow()
+}
+
+class FGroupableEditView {
+    # groupViews : [FPropertyGroupView]
+    # canMoveGroup: bool
+} 
+
+class FPropertyGroupHeaderView
+class FPropertyGroupContentView
+
+class FPropertyGroupView {
+   - headerView: FPropertyGroupHeaderView
+   - contentView: FPropertyGroupContentView
+}
+
+
+FPropertyGroupHeaderView --* FPropertyGroupView
+FPropertyGroupContentView --* FPropertyGroupView
+FPropertyGroupView "n" --* "1" FGroupableEditView
+
+interface IVideoBasicViewRequest {
+
+   + loadTransformDataRequest()
+}
+
+interface IVideoBasicViewResponse {
+   + loadTransformDataResponse()
+}
+
+class FVideoBasicEditView {
+   - m_presenter: FVideoBasicPresenter
+}
+
+class FVideoBasicPresenter {
+   - m_viewResponse: IVideoBasicViewResponse
+   + loadTransformData()
+}
+
+FEditView <|-- FGroupableEditView
+FGroupableEditView <|-- FVideoBasicEditView
+IVideoBasicViewResponse<|..FVideoBasicEditView
+IVideoBasicViewRequest<|..FVideoBasicPresenter
+
+FVideoBasicEditView *-- FVideoBasicPresenter
+FVideoBasicEditView<..FVideoBasicPresenter
+
+@enduml

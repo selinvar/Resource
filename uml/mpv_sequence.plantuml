@@ -1,0 +1,7 @@
+@startuml
+FVideoBasicEditView -> FVideoBasicPresenter: loadTransformDataReqest()
+FVideoBasicPresenter -> DataStorage: getTransformData()
+DataStorage --> FVideoBasicPresenter: transformData()
+FVideoBasicPresenter -> FVideoBasicEditView: loadTransformDataResponse()
+FVideoBasicEditView -> FVideoBasicEditView: refershView()
+@enduml
